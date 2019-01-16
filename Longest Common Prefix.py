@@ -1,28 +1,40 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Write a function to find the longest common prefix string amongst an array of strings.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+If there is no common prefix, return an empty string "".
 
-Example:
+Example 1:
 
-Given nums = [2, 7, 11, 15], target = 9,
+Input: ["flower","flow","flight"]
+Output: "fl"
+Example 2:
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: ["dog","racecar","car"]
+Output: ""
+Explanation: There is no common prefix among the input strings.
+Note:
+
+All given inputs are in lowercase letters a-z.
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def longestCommonPrefix(self, strs):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type strs: List[str]
+        :rtype: str
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
+        if len(strs)==0:
+            return ""
+        if len(strs)==1:
+            return strs[0]
+        cp = ''
+        l = [len(st) for st in strs] #lengths for each string
+        for i in range(min(l)): # scan from first letter to min str lengths
+            tmp = [s[i] for s in strs] #get i-th letter from each string
+            if min(tmp)==max(tmp): #check if all of them are the same
+                cp = cp + tmp[0]
             else:
-                a[num] = i
+                return cp
+        return cp
