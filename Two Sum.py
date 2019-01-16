@@ -20,8 +20,9 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        d = {}
+        a ={}
         for i, num in enumerate(nums):
-            d[num] = i
-            if target-num in d:
-                return [d[target-num], i]
+            if target-num in a:
+                return [a[target - num], i]
+            else:
+                a[num] = i
