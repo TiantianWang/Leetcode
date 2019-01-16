@@ -51,13 +51,11 @@ class Solution(object):
         # Hash map for keeping track of mappings. This keeps the code very clean.
         # Also makes adding more types of parenthesis easier
         mapping = {")": "(", "}": "{", "]": "["}
-        t=0
         # For every bracket in the expression.
         for char in s:
             # If the character is an closing bracket
             if char in mapping:
-                print t
-                t=t+1
+               
                 # Pop the topmost element from the stack, if it is non empty
                 # Otherwise assign a dummy value of '#' to the top_element variable
                 top_element = stack.pop() if stack else '#'
