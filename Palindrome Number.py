@@ -1,28 +1,28 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Determine whether an integer is a palindrome. An integer is a palindrome when it reads the same backward as forward.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Example 1:
 
-Example:
+Input: 121
+Output: true
+Example 2:
 
-Given nums = [2, 7, 11, 15], target = 9,
+Input: -121
+Output: false
+Explanation: From left to right, it reads -121. From right to left, it becomes 121-. Therefore it is not a palindrome.
+Example 3:
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: 10
+Output: false
+Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def isPalindrome(self, x):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type x: int
+        :rtype: bool
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        return x >= 0 and str(x) == str(x)[::-1]
