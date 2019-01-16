@@ -13,16 +13,23 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 """
 
-class Solution(object):
-    def twoSum(self, nums, target):
+class Solution:
+    def reverse(self, x):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type x: int
+        :rtype: int
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        intMax = 2**31-1
+        intMin = -2**31
+        rev = 0
+        sign = 1
+        if x > intMax or x < intMin:
+            return 0
+        if x < 0:
+            sign = -1
+            x *= sign 
+        while x != 0:
+            pop = x % 10
+            x = int(x/10)
+            rev = rev * 10 + pop
+        return 0 if rev>intMax or rev<intMin else rev*sign
