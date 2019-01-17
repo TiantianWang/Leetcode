@@ -16,12 +16,15 @@ class Solution(object):
         :type nums: List[int]
         :rtype: int
         """
-        max_num = - 2 ** 31
         this = 0
+        max_sum = - 2 ** 31
         for i in range(len(nums)):
             
+            this = this + nums[i]
+            max_sum = max(this, max_sum)
             if this < 0:
                 this = 0
-            this = this + nums[i]
-            max_num = max(this, max_num)
-        return max_num
+                continue
+        return max_sum
+
+
