@@ -1,27 +1,39 @@
 """
 Description
 
-Given two binary strings, return their sum (also a binary string).
+Implement int sqrt(int x).
 
-The input strings are both non-empty and contains only characters 1 or 0.
+Compute and return the square root of x, where x is guaranteed to be a non-negative integer.
+
+Since the return type is an integer, the decimal digits are truncated and only the integer part of the result is returned.
 
 Example 1:
 
-Input: a = "11", b = "1"
-Output: "100"
+Input: 4
+Output: 2
 Example 2:
 
-Input: a = "1010", b = "1011"
-Output: "10101"
+Input: 8
+Output: 2
+Explanation: The square root of 8 is 2.82842..., and since 
+             the decimal part is truncated, 2 is returned.
+             
 """
 
 class Solution(object):
-    def addBinary(self, a, b):
+    def mySqrt(self, x):
         """
-        :type a: str
-        :type b: str
-        :rtype: str
-        """
-        a_b = int(a, 2) + int(b, 2)
-        a_b = str(bin(a_b))
-        return a_b[2:]
+        :type x: int
+        :rtype: int
+        """      
+        if x == 0 or x == 1: 
+            return x
+        low, high = 1, x
+        while low < high:
+            mid = (low + high) / 2
+            if mid == low or mid ** 2 == x:
+                return mid
+            if mid ** 2 < x:
+                mid = low
+            else:
+                mid = high
