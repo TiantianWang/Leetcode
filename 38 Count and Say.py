@@ -1,28 +1,54 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+The count-and-say sequence is the sequence of integers with the first five terms as following:
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+1.     1
+2.     11
+3.     21
+4.     1211
+5.     111221
+1 is read off as "one 1" or 11.
+11 is read off as "two 1s" or 21.
+21 is read off as "one 2, then one 1" or 1211.
 
-Example:
+Given an integer n where 1 ≤ n ≤ 30, generate the nth term of the count-and-say sequence.
 
-Given nums = [2, 7, 11, 15], target = 9,
+Note: Each term of the sequence of integers will be represented as a string.
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+ 
+
+Example 1:
+
+Input: 1
+Output: "1"
+Example 2:
+
+Input: 4
+Output: "1211"
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def countAndSay(self, n):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type n: int
+        :rtype: str
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        if n == 1:
+            return '1'
+        if n == 2:
+            return '11'
+        s = '11'
+        
+        for i in range(n-2):
+            count = 1
+            temp = ''
+            for j in range(len(s)-1):
+                if s[j] == s[j+1]:
+                    count = count + 1
+                else:
+                    temp = temp + str(count) + s[j]
+                    count = 1
+            temp = temp + str(count) + s[j+1]
+            s = temp
+        return s
