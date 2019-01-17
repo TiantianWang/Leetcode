@@ -1,28 +1,33 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Given a non-empty array of digits representing a non-negative integer, plus one to the integer.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+The digits are stored such that the most significant digit is at the head of the list, and each element in the array contain a single digit.
 
-Example:
+You may assume the integer does not contain any leading zero, except the number 0 itself.
 
-Given nums = [2, 7, 11, 15], target = 9,
+Example 1:
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: [1,2,3]
+Output: [1,2,4]
+Explanation: The array represents the integer 123.
+Example 2:
+
+Input: [4,3,2,1]
+Output: [4,3,2,2]
+Explanation: The array represents the integer 4321.
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def plusOne(self, digits):
         """
-        :type nums: List[int]
-        :type target: int
+        :type digits: List[int]
         :rtype: List[int]
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        temp = ""
+        for i in digits:
+            temp = temp + str(i)
+        temp = int(temp)
+        temp = temp + 1        
+        return [int(i) for i in str(temp)]
