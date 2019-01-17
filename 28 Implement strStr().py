@@ -1,28 +1,31 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Implement strStr().
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
 
-Example:
+Example 1:
 
-Given nums = [2, 7, 11, 15], target = 9,
+Input: haystack = "hello", needle = "ll"
+Output: 2
+Example 2:
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: haystack = "aaaaa", needle = "bba"
+Output: -1
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def strStr(self, haystack, needle):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type haystack: str
+        :type needle: str
+        :rtype: int
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        if needle == '':
+            return 0
+        needlelen = len(needle)
+        for i in range(len(haystack)-needlelen+1):
+            if haystack[i:i+needlelen] == needle:
+                return i
+        return -1
