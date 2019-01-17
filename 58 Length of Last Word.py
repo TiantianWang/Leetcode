@@ -1,28 +1,33 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
 
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+If the last word does not exist, return 0.
+
+Note: A word is defined as a character sequence consists of non-space characters only.
 
 Example:
 
-Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: "Hello World"
+Output: 5
 """
 
 class Solution(object):
-    def twoSum(self, nums, target):
+    def lengthOfLastWord(self, s):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type s: str
+        :rtype: int
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
-            else:
-                a[num] = i
+        if s == '' or s == ' ':
+            return 0        
+        count = 0 
+        for i in range(len(s)-1, -1, -1):
+
+            if s[i] != ' ':
+                count = count +1
+                if s[i-1] == ' ':
+                    break
+            if s[i] == ' ':
+                continue
+        return count
