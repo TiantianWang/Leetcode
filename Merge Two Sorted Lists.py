@@ -1,28 +1,46 @@
 """
 Description
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
 
 Example:
 
-Given nums = [2, 7, 11, 15], target = 9,
-
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+Input: 1->2->4, 1->3->4
+Output: 1->1->2->3->4->4
 """
 
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
 class Solution(object):
-    def twoSum(self, nums, target):
+    def mergeTwoLists(self, l1, l2):
         """
-        :type nums: List[int]
-        :type target: int
-        :rtype: List[int]
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
         """
-        a ={}
-        for i, num in enumerate(nums):
-            if target-num in a:
-                return [a[target - num], i]
+        if not l1:
+            return l2
+        if not l2:
+            return l1
+        dummy=ListNode(0)
+        p=dummy
+        while l1 and l2:
+            if l1.val<l2.val:
+                p.next=l1
+                l1=l1.next
             else:
-                a[num] = i
+                p.next=l2
+                l2=l2.next
+            p=p.next
+        if l1:
+            p.next=l1
+        else:
+            p.next=l2
+        return dummy.next
+
+
+
