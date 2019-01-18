@@ -1,27 +1,44 @@
 """
 Description
 
-Given two binary strings, return their sum (also a binary string).
+Given a non-negative integer numRows, generate the first numRows of Pascal's triangle.
 
-The input strings are both non-empty and contains only characters 1 or 0.
 
-Example 1:
+In Pascal's triangle, each number is the sum of the two numbers directly above it.
 
-Input: a = "11", b = "1"
-Output: "100"
-Example 2:
+Example:
 
-Input: a = "1010", b = "1011"
-Output: "10101"
+Input: 5
+Output:
+[
+     [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]
+]
+
 """
 
 class Solution(object):
-    def addBinary(self, a, b):
+    def generate(self, numRows):
         """
-        :type a: str
-        :type b: str
-        :rtype: str
+        :type numRows: int
+        :rtype: List[List[int]]
         """
-        a_b = int(a, 2) + int(b, 2)
-        a_b = str(bin(a_b))
-        return a_b[2:]
+        if numRows == 0:
+            return []
+        if numRows == 1:
+            return [[1]]
+        if numRows == 2:
+            return [[1], [1, 1]]
+        result = [[] for i in range(numRows)]
+        result[0] = [1]
+        result[1] = [1, 1]
+        for i in range(2, numRows):
+            result[i].append(1)
+            for j in range(1, i):
+                result[i].append(result[i-1][j-1]+result[i-1][j])
+            result[i].append(1)
+        return result
+                
