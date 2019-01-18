@@ -1,27 +1,30 @@
 """
 Description
 
-Given two binary strings, return their sum (also a binary string).
+Given a non-empty array of integers, every element appears twice except for one. Find that single one.
 
-The input strings are both non-empty and contains only characters 1 or 0.
+Note:
+
+Your algorithm should have a linear runtime complexity. Could you implement it without using extra memory?
 
 Example 1:
 
-Input: a = "11", b = "1"
-Output: "100"
+Input: [2,2,1]
+Output: 1
 Example 2:
 
-Input: a = "1010", b = "1011"
-Output: "10101"
+Input: [4,1,2,1,2]
+Output: 4
+
 """
 
 class Solution(object):
-    def addBinary(self, a, b):
+    def singleNumber(self, nums):
         """
-        :type a: str
-        :type b: str
-        :rtype: str
+        :type nums: List[int]
+        :rtype: int
         """
-        a_b = int(a, 2) + int(b, 2)
-        a_b = str(bin(a_b))
-        return a_b[2:]
+        res = 0
+        for i in nums:
+            res = res ^ i
+        return res
