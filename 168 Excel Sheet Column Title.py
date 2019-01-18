@@ -1,27 +1,43 @@
 """
 Description
 
-Given two binary strings, return their sum (also a binary string).
+Given a positive integer, return its corresponding column title as appear in an Excel sheet.
 
-The input strings are both non-empty and contains only characters 1 or 0.
+For example:
 
+    1 -> A
+    2 -> B
+    3 -> C
+    ...
+    26 -> Z
+    27 -> AA
+    28 -> AB 
+    ...
 Example 1:
 
-Input: a = "11", b = "1"
-Output: "100"
+Input: 1
+Output: "A"
 Example 2:
 
-Input: a = "1010", b = "1011"
-Output: "10101"
+Input: 28
+Output: "AB"
+Example 3:
+
+Input: 701
+Output: "ZY"
+
 """
 
 class Solution(object):
-    def addBinary(self, a, b):
+    def convertToTitle(self, n):
         """
-        :type a: str
-        :type b: str
+        :type n: int
         :rtype: str
         """
-        a_b = int(a, 2) + int(b, 2)
-        a_b = str(bin(a_b))
-        return a_b[2:]
+        capitals = [chr(i) for i in range(ord('A'), ord('Z')+1)]
+        result = []
+        while n > 0:
+            result.append(capitals[(n-1)%26])
+            n = (n-1) / 26
+        result.reverse()
+        return ''.join(result)
