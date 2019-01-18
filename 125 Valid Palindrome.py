@@ -1,27 +1,40 @@
 """
 Description
 
-Given two binary strings, return their sum (also a binary string).
+Given a string, determine if it is a palindrome, considering only alphanumeric characters and ignoring cases.
 
-The input strings are both non-empty and contains only characters 1 or 0.
+Note: For the purpose of this problem, we define empty string as valid palindrome.
 
 Example 1:
 
-Input: a = "11", b = "1"
-Output: "100"
+Input: "A man, a plan, a canal: Panama"
+Output: true
 Example 2:
 
-Input: a = "1010", b = "1011"
-Output: "10101"
+Input: "race a car"
+Output: false
+
 """
 
 class Solution(object):
-    def addBinary(self, a, b):
-        """
-        :type a: str
-        :type b: str
-        :rtype: str
-        """
-        a_b = int(a, 2) + int(b, 2)
-        a_b = str(bin(a_b))
-        return a_b[2:]
+    def isPalindrome(self, s):  
+    """
+    :type s: str
+    :rtype: bool
+    """
+    if not s: return True
+    l, r = 0, len(s)-1
+    while l < r:
+      sl = s[l].lower()
+      sr = s[r].lower()
+      if s[l].isalnum() and s[r].isalnum():
+        if sl != sr:
+          return False
+        l += 1
+        r -= 1
+      else:
+        if not s[l].isalnum():
+          l += 1
+        if not s[r].isalnum():
+          r -= 1
+    return True
